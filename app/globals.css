@@ -1,0 +1,168 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #a45a52;
+  --primary-dark: #8b4513;
+  --secondary: #9c6644;
+  --secondary-dark: #7f5539;
+  --background: #f5f5f0;
+  --foreground: #2c2c27;
+}
+
+.dark {
+  --primary: #c68b59;
+  --primary-dark: #a45a52;
+  --secondary: #9c6644;
+  --secondary-dark: #7f5539;
+  --background: #2c2c27;
+  --foreground: #f5f5f0;
+}
+
+.earthy {
+  --primary: #8b4513;
+  --primary-dark: #6b3611;
+  --secondary: #9c6644;
+  --secondary-dark: #7f5539;
+  --background: #dfd3c3;
+  --foreground: #3a3a38;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+}
+
+@layer base {
+  :root {
+    --background: 60 20% 95%;
+    --foreground: 60 5% 15%;
+
+    --card: 60 15% 97%;
+    --card-foreground: 60 5% 15%;
+
+    --popover: 60 15% 97%;
+    --popover-foreground: 60 5% 15%;
+
+    --primary: 10 33% 48%;
+    --primary-foreground: 60 15% 97%;
+
+    --secondary: 25 38% 44%;
+    --secondary-foreground: 60 15% 97%;
+
+    --muted: 60 10% 90%;
+    --muted-foreground: 60 5% 40%;
+
+    --accent: 43 74% 49%;
+    --accent-foreground: 60 5% 15%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 60 15% 97%;
+
+    --border: 60 10% 85%;
+    --input: 60 10% 85%;
+    --ring: 10 33% 48%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 60 5% 15%;
+    --foreground: 60 15% 97%;
+
+    --card: 60 5% 18%;
+    --card-foreground: 60 15% 97%;
+
+    --popover: 60 5% 18%;
+    --popover-foreground: 60 15% 97%;
+
+    --primary: 20 43% 56%;
+    --primary-foreground: 60 5% 15%;
+
+    --secondary: 79 26% 32%;
+    --secondary-foreground: 60 15% 97%;
+
+    --muted: 60 5% 25%;
+    --muted-foreground: 60 10% 70%;
+
+    --accent: 43 74% 39%;
+    --accent-foreground: 60 15% 97%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 60 15% 97%;
+
+    --border: 60 5% 25%;
+    --input: 60 5% 25%;
+    --ring: 20 43% 56%;
+  }
+
+  .earthy {
+    --background: 33 25% 82%;
+    --foreground: 60 2% 22%;
+
+    --card: 33 20% 87%;
+    --card-foreground: 60 2% 22%;
+
+    --popover: 33 20% 87%;
+    --popover-foreground: 60 2% 22%;
+
+    --primary: 25 75% 31%;
+    --primary-foreground: 33 25% 92%;
+
+    --secondary: 79 26% 32%;
+    --secondary-foreground: 33 25% 92%;
+
+    --muted: 33 15% 75%;
+    --muted-foreground: 60 2% 40%;
+
+    --accent: 33 50% 50%;
+    --accent-foreground: 60 2% 22%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 33 25% 92%;
+
+    --border: 33 15% 70%;
+    --input: 33 15% 70%;
+    --ring: 25 75% 31%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.hero-section {
+  background: linear-gradient(rgba(139, 69, 19, 0.8), rgba(156, 102, 68, 0.8));
+}
+
+.section-heading {
+  @apply text-3xl md:text-4xl font-bold mb-6 text-amber-900 dark:text-amber-600;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.section-subheading {
+  @apply text-xl md:text-2xl font-semibold mb-4 text-amber-700 dark:text-amber-500;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.serif-font {
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.btn-primary {
+  @apply bg-amber-700 hover:bg-amber-800 text-white font-medium py-2 px-4 rounded-md transition-colors;
+}
+
+.btn-secondary {
+  @apply bg-amber-600 hover:bg-amber-700 text-white font-medium py-2 px-4 rounded-md transition-colors;
+}
+
+.card {
+  @apply bg-white dark:bg-slate-800 rounded-lg shadow-md overflow-hidden transition-all hover:shadow-lg;
+}
