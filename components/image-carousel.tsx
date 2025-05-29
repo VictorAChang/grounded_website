@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Image from "next/image"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
@@ -13,7 +14,11 @@ interface ImageCarouselProps {
   interval?: number
 }
 
-const ImageCarousel = ({ images, autoPlay = true, interval = 5000 }: ImageCarouselProps) => {
+const ImageCarousel = ({
+  images,
+  autoPlay = true,
+  interval = 5000,
+}: ImageCarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0)
 
   const goToNext = () => {
@@ -41,14 +46,18 @@ const ImageCarousel = ({ images, autoPlay = true, interval = 5000 }: ImageCarous
         {images.map((image, index) => (
           <div
             key={index}
-            className={`absolute inset-0 transition-opacity duration-500 ease-in-out ${
-              index === currentIndex ? "opacity-100" : "opacity-0"
+            className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+              index === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"
             }`}
-            style={{ zIndex: index === currentIndex ? 10 : 0 }}
           >
-            <div className="w-full h-full flex items-center justify-center text-gray-500 dark:text-gray-400 bg-gray-200 dark:bg-gray-700">
-              {image.alt}
-            </div>
+            <Image
+              src={image.src}
+              alt={image.alt}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+              priority={index === 0}
+            />
           </div>
         ))}
       </div>

@@ -1,8 +1,16 @@
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+"use client"; // Required if ImageCarousel uses hooks
+import ImageCarousel from "@/components/image-carousel";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 // This would typically come from a database
 const coffeeItems = {
@@ -14,7 +22,7 @@ const coffeeItems = {
       origin: "Blend of Ethiopian and Colombian beans",
       roaster: "Great Lakes Coffee Roasting Co.",
       price: 3.5,
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/images/coffee/espresso.jpg",
     },
     {
       id: 2,
@@ -23,7 +31,7 @@ const coffeeItems = {
       origin: "Blend of Ethiopian and Colombian beans",
       roaster: "Great Lakes Coffee Roasting Co.",
       price: 4.0,
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/images/coffee/americano.jpg",
     },
     {
       id: 3,
@@ -32,7 +40,7 @@ const coffeeItems = {
       origin: "Blend of Ethiopian and Colombian beans",
       roaster: "Great Lakes Coffee Roasting Co.",
       price: 4.5,
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/images/coffee/cappuccino.jpg",
     },
     {
       id: 4,
@@ -41,7 +49,7 @@ const coffeeItems = {
       origin: "Blend of Ethiopian and Colombian beans",
       roaster: "Great Lakes Coffee Roasting Co.",
       price: 4.75,
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/images/coffee/latte.jpg",
     },
     {
       id: 5,
@@ -50,7 +58,7 @@ const coffeeItems = {
       origin: "Blend of Ethiopian and Colombian beans",
       roaster: "Great Lakes Coffee Roasting Co.",
       price: 5.25,
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/images/coffee/mocha.jpg",
     },
     {
       id: 6,
@@ -59,18 +67,19 @@ const coffeeItems = {
       origin: "Blend of Ethiopian and Colombian beans",
       roaster: "Great Lakes Coffee Roasting Co.",
       price: 4.25,
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/images/coffee/macchiato.jpg",
     },
   ],
   brewed: [
     {
       id: 7,
       name: "Pour Over",
-      description: "Hand-poured coffee highlighting the bean's unique characteristics",
+      description:
+        "Hand-poured coffee highlighting the bean's unique characteristics",
       origin: "Single-origin Ethiopian Yirgacheffe",
       roaster: "Hyperion Coffee Co.",
       price: 4.5,
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/images/coffee/pour_over.jpg",
     },
     {
       id: 8,
@@ -79,16 +88,17 @@ const coffeeItems = {
       origin: "Single-origin Sumatra Mandheling",
       roaster: "Populace Coffee",
       price: 4.25,
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/images/coffee/french_press.jpg",
     },
     {
       id: 9,
       name: "Cold Brew",
-      description: "Smooth, low-acid coffee brewed with cold water for 12+ hours",
+      description:
+        "Smooth, low-acid coffee brewed with cold water for 12+ hours",
       origin: "Blend of Brazilian and Guatemalan beans",
       roaster: "Madcap Coffee Company",
       price: 5.0,
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/images/coffee/cold_brew.jpg",
     },
     {
       id: 10,
@@ -97,18 +107,19 @@ const coffeeItems = {
       origin: "Blend of Central and South American beans",
       roaster: "Stovetop Roasters",
       price: 3.25,
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/images/coffee/drip_coffee.jpg",
     },
   ],
   specialty: [
     {
       id: 11,
       name: "Mindful Mug Signature",
-      description: "Our signature drink with espresso, maple syrup, and oat milk",
+      description:
+        "Our signature drink with espresso, maple syrup, and oat milk",
       origin: "Blend of Ethiopian and Colombian beans",
       roaster: "Great Lakes Coffee Roasting Co.",
       price: 5.75,
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/images/coffee/mindful_mug_signature.jpg",
       special: true,
     },
     {
@@ -118,7 +129,7 @@ const coffeeItems = {
       origin: "Blend of Ethiopian and Colombian beans",
       roaster: "Great Lakes Coffee Roasting Co.",
       price: 5.5,
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/images/coffee/lavender_latte.jpg",
     },
     {
       id: 13,
@@ -127,7 +138,7 @@ const coffeeItems = {
       origin: "Blend of Ethiopian and Colombian beans",
       roaster: "Great Lakes Coffee Roasting Co.",
       price: 5.5,
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/images/coffee/michigan_maple.jpg",
     },
     {
       id: 14,
@@ -136,10 +147,10 @@ const coffeeItems = {
       origin: "N/A",
       roaster: "N/A",
       price: 4.75,
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/images/coffee/chai_latte.jpg",
     },
   ],
-}
+};
 
 // This would typically come from a database
 const roasters = [
@@ -147,7 +158,8 @@ const roasters = [
     id: 1,
     name: "Great Lakes Coffee Roasting Co.",
     location: "Detroit, MI",
-    description: "A Detroit-based roaster committed to sustainable sourcing and artisanal roasting techniques.",
+    description:
+      "A Detroit-based roaster committed to sustainable sourcing and artisanal roasting techniques.",
     image: "/placeholder.svg?height=400&width=600",
     website: "https://greatlakescoffee.com",
   },
@@ -155,7 +167,8 @@ const roasters = [
     id: 2,
     name: "Hyperion Coffee Co.",
     location: "Ypsilanti, MI",
-    description: "Small-batch roaster focusing on single-origin coffees and direct trade relationships with farmers.",
+    description:
+      "Small-batch roaster focusing on single-origin coffees and direct trade relationships with farmers.",
     image: "/placeholder.svg?height=400&width=600",
     website: "https://hyperioncoffee.com",
   },
@@ -163,7 +176,8 @@ const roasters = [
     id: 3,
     name: "Madcap Coffee Company",
     location: "Grand Rapids, MI",
-    description: "Award-winning roaster known for their meticulous sourcing and precision roasting.",
+    description:
+      "Award-winning roaster known for their meticulous sourcing and precision roasting.",
     image: "/placeholder.svg?height=400&width=600",
     website: "https://madcapcoffee.com",
   },
@@ -171,11 +185,12 @@ const roasters = [
     id: 4,
     name: "Populace Coffee",
     location: "Bay City, MI",
-    description: "Focused on making specialty coffee approachable while maintaining exceptional quality.",
+    description:
+      "Focused on making specialty coffee approachable while maintaining exceptional quality.",
     image: "/placeholder.svg?height=400&width=600",
     website: "https://populacecoffee.com",
   },
-]
+];
 
 export default function CoffeePage() {
   return (
@@ -183,16 +198,22 @@ export default function CoffeePage() {
       {/* Hero Section */}
       <section className="bg-olive-700 dark:bg-olive-900 text-white py-20">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Our Coffee Menu</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            Our Coffee Menu
+          </h1>
           <p className="text-xl max-w-3xl mx-auto mb-8">
-            Discover our selection of ethically sourced, locally roasted coffees from Michigan&apos;s finest roasters.
+            Discover our selection of ethically sourced, locally roasted coffees
+            from Michigan&apos;s finest roasters.
           </p>
-          <Button asChild size="lg" className="bg-white text-olive-700 hover:bg-gray-100">
+          <Button
+            asChild
+            size="lg"
+            className="bg-white text-olive-700 hover:bg-gray-100"
+          >
             <a href="#menu">View Menu</a>
           </Button>
         </div>
       </section>
-
       {/* Introduction */}
       <section className="py-16">
         <div className="container mx-auto px-4">
@@ -200,39 +221,57 @@ export default function CoffeePage() {
             <div>
               <h2 className="section-heading">Our Coffee Philosophy</h2>
               <p className="text-gray-700 dark:text-gray-300 mb-4">
-                At Grounded, we believe that great coffee starts with great relationships. We partner exclusively with
-                Michigan-based roasters who share our commitment to quality, sustainability, and ethical sourcing.
+                At Grounded, we believe that great coffee starts with great
+                relationships. We partner exclusively with Michigan-based
+                roasters who share our commitment to quality, sustainability,
+                and ethical sourcing.
               </p>
               <p className="text-gray-700 dark:text-gray-300 mb-4">
-                Each cup we serve tells a story - from the farmers who cultivate the beans, to the roasters who develop
-                their unique flavors, to our baristas who craft your perfect drink. We&apos;re proud to showcase the
-                incredible coffee talent that Michigan has to offer.
+                Each cup we serve tells a story - from the farmers who cultivate
+                the beans, to the roasters who develop their unique flavors, to
+                our baristas who craft your perfect drink. We&apos;re proud to
+                showcase the incredible coffee talent that Michigan has to
+                offer.
               </p>
               <p className="text-gray-700 dark:text-gray-300 mb-6">
-                Whether you&apos;re a coffee connoisseur or just looking for a delicious cup to enjoy with your yoga
-                practice, we&apos;re here to provide a mindful coffee experience that connects you to the local
-                community.
+                Whether you&apos;re a coffee connoisseur or just looking for a
+                delicious cup to enjoy with your yoga practice, we&apos;re here
+                to provide a mindful coffee experience that connects you to the
+                local community.
               </p>
             </div>
             <div className="relative h-80 md:h-96 rounded-lg overflow-hidden shadow-xl">
-              <Image
-                src="/placeholder.svg?height=600&width=800"
-                alt="Coffee being prepared at The Mindful Mug"
-                fill
-                className="object-cover"
+              <ImageCarousel
+                images={[
+                  {
+                    src: "/images/roasters/great_lakes.jpg",
+                    alt: "Great Lakes Coffee",
+                  },
+                  {
+                    src: "/images/roasters/hyperion.jpg",
+                    alt: "Hyperion Coffee",
+                  },
+                  { src: "/images/roasters/madcap.jpg", alt: "Madcap Coffee" },
+                  {
+                    src: "/images/roasters/populace.jpg",
+                    alt: "Populace Coffee",
+                  },
+                ]}
+                className="h-full w-full object-cover rounded-lg"
+                autoplay
+                interval={5000}
               />
             </div>
           </div>
         </div>
       </section>
-
       {/* Coffee Menu */}
       <section id="menu" className="py-16 bg-gray-50 dark:bg-slate-900">
         <div className="container mx-auto px-4">
           <h2 className="section-heading text-center">Coffee Menu</h2>
           <p className="text-center text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto">
-            Explore our selection of carefully crafted coffee beverages, featuring beans from Michigan&apos;s finest
-            roasters.
+            Explore our selection of carefully crafted coffee beverages,
+            featuring beans from Michigan&apos;s finest roasters.
           </p>
 
           <Tabs defaultValue="espresso" className="max-w-5xl mx-auto">
@@ -248,7 +287,12 @@ export default function CoffeePage() {
                   {items.map((item) => (
                     <Card key={item.id} className="overflow-hidden">
                       <div className="relative h-48">
-                        <Image src={item.image || "/placeholder.svg"} alt={item.name} fill className="object-cover" />
+                        <Image
+                          src={item.image || "/placeholder.svg"}
+                          alt={item.name}
+                          fill
+                          className="object-cover"
+                        />
                         {item.special && (
                           <div className="absolute top-2 right-2">
                             <Badge className="bg-olive-600">Staff Pick</Badge>
@@ -257,8 +301,12 @@ export default function CoffeePage() {
                       </div>
                       <CardHeader>
                         <div className="flex justify-between items-start">
-                          <CardTitle className="text-amber-800 dark:text-amber-500">{item.name}</CardTitle>
-                          <span className="font-semibold">${item.price.toFixed(2)}</span>
+                          <CardTitle className="text-amber-800 dark:text-amber-500">
+                            {item.name}
+                          </CardTitle>
+                          <span className="font-semibold">
+                            ${item.price.toFixed(2)}
+                          </span>
                         </div>
                         <CardDescription>{item.description}</CardDescription>
                       </CardHeader>
@@ -283,20 +331,23 @@ export default function CoffeePage() {
 
           <div className="mt-12 text-center">
             <p className="text-gray-600 dark:text-gray-300 mb-4">
-              All drinks available with your choice of whole, skim, oat, almond, or soy milk.
+              All drinks available with your choice of whole, skim, oat, almond,
+              or soy milk.
             </p>
-            <p className="text-gray-600 dark:text-gray-300">Add an extra shot of espresso to any drink for $1.00.</p>
+            <p className="text-gray-600 dark:text-gray-300">
+              Add an extra shot of espresso to any drink for $1.00.
+            </p>
           </div>
         </div>
       </section>
-
       {/* Featured Roasters */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <h2 className="section-heading text-center">Our Michigan Roasters</h2>
           <p className="text-center text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto">
-            We proudly partner with these exceptional Michigan-based coffee roasters who share our values of quality,
-            sustainability, and community.
+            We proudly partner with these exceptional Michigan-based coffee
+            roasters who share our values of quality, sustainability, and
+            community.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -304,12 +355,23 @@ export default function CoffeePage() {
               <Card key={roaster.id} className="overflow-hidden">
                 <div className="grid grid-cols-1 md:grid-cols-3">
                   <div className="relative h-full min-h-[200px]">
-                    <Image src={roaster.image || "/placeholder.svg"} alt={roaster.name} fill className="object-cover" />
+                    <Image
+                      src={roaster.image || "/placeholder.svg"}
+                      alt={roaster.name}
+                      fill
+                      className="object-cover"
+                    />
                   </div>
                   <div className="md:col-span-2 p-6">
-                    <h3 className="text-xl font-semibold text-blue-800 dark:text-blue-400 mb-2">{roaster.name}</h3>
-                    <p className="text-gray-500 dark:text-gray-400 mb-4">{roaster.location}</p>
-                    <p className="text-gray-700 dark:text-gray-300 mb-4">{roaster.description}</p>
+                    <h3 className="text-xl font-semibold text-blue-800 dark:text-blue-400 mb-2">
+                      {roaster.name}
+                    </h3>
+                    <p className="text-gray-500 dark:text-gray-400 mb-4">
+                      {roaster.location}
+                    </p>
+                    <p className="text-gray-700 dark:text-gray-300 mb-4">
+                      {roaster.description}
+                    </p>
                     <a
                       href={roaster.website}
                       target="_blank"
@@ -325,13 +387,13 @@ export default function CoffeePage() {
           </div>
         </div>
       </section>
-
       {/* Bean-to-Cup Process */}
       <section className="py-16 bg-gray-50 dark:bg-slate-900">
         <div className="container mx-auto px-4">
           <h2 className="section-heading text-center">From Bean to Cup</h2>
           <p className="text-center text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto">
-            Our commitment to quality is reflected in every step of our coffee journey.
+            Our commitment to quality is reflected in every step of our coffee
+            journey.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
@@ -352,10 +414,12 @@ export default function CoffeePage() {
                   />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-blue-800 dark:text-blue-400 mb-2">Ethical Sourcing</h3>
+              <h3 className="text-lg font-semibold text-blue-800 dark:text-blue-400 mb-2">
+                Ethical Sourcing
+              </h3>
               <p className="text-gray-600 dark:text-gray-300">
-                We partner with roasters who maintain direct relationships with farmers and pay fair prices for their
-                crops.
+                We partner with roasters who maintain direct relationships with
+                farmers and pay fair prices for their crops.
               </p>
             </div>
 
@@ -382,10 +446,12 @@ export default function CoffeePage() {
                   />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-blue-800 dark:text-blue-400 mb-2">Local Roasting</h3>
+              <h3 className="text-lg font-semibold text-blue-800 dark:text-blue-400 mb-2">
+                Local Roasting
+              </h3>
               <p className="text-gray-600 dark:text-gray-300">
-                All our beans are roasted in Michigan by skilled artisans who bring out each coffee&apos;s unique
-                characteristics.
+                All our beans are roasted in Michigan by skilled artisans who
+                bring out each coffee&apos;s unique characteristics.
               </p>
             </div>
 
@@ -406,10 +472,12 @@ export default function CoffeePage() {
                   />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-blue-800 dark:text-blue-400 mb-2">Precision Brewing</h3>
+              <h3 className="text-lg font-semibold text-blue-800 dark:text-blue-400 mb-2">
+                Precision Brewing
+              </h3>
               <p className="text-gray-600 dark:text-gray-300">
-                Our baristas are trained in the art and science of coffee preparation, ensuring consistent quality in
-                every cup.
+                Our baristas are trained in the art and science of coffee
+                preparation, ensuring consistent quality in every cup.
               </p>
             </div>
 
@@ -430,23 +498,24 @@ export default function CoffeePage() {
                   />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-blue-800 dark:text-blue-400 mb-2">Mindful Service</h3>
+              <h3 className="text-lg font-semibold text-blue-800 dark:text-blue-400 mb-2">
+                Mindful Service
+              </h3>
               <p className="text-gray-600 dark:text-gray-300">
-                We serve each cup with intention, creating a moment of connection between you and your coffee
-                experience.
+                We serve each cup with intention, creating a moment of
+                connection between you and your coffee experience.
               </p>
             </div>
           </div>
         </div>
       </section>
-
       {/* Retail Section */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="relative h-80 md:h-96 rounded-lg overflow-hidden shadow-xl">
               <Image
-                src="/placeholder.svg?height=600&width=800"
+                src="/images/coffee/roasted_beans.jpg"
                 alt="Coffee beans and retail products at The Mindful Mug"
                 fill
                 className="object-cover"
@@ -455,35 +524,46 @@ export default function CoffeePage() {
             <div>
               <h2 className="section-heading">Take Home the Experience</h2>
               <p className="text-gray-700 dark:text-gray-300 mb-4">
-                Love our coffee? Take some home with you! We offer a rotating selection of whole bean coffees from our
-                partner roasters, along with brewing equipment and Grounded merchandise.
+                Love our coffee? Take some home with you! We offer a rotating
+                selection of whole bean coffees from our partner roasters, along
+                with brewing equipment and Grounded merchandise.
               </p>
               <p className="text-gray-700 dark:text-gray-300 mb-4">
-                Our knowledgeable staff can help you select the perfect beans for your taste preferences and brewing
-                method, and even provide brewing tips to help you recreate the Grounded experience at home.
+                Our knowledgeable staff can help you select the perfect beans
+                for your taste preferences and brewing method, and even provide
+                brewing tips to help you recreate the Grounded experience at
+                home.
               </p>
               <p className="text-gray-700 dark:text-gray-300 mb-6">
-                Ask about our coffee subscription service for regular deliveries of fresh-roasted beans to your door.
+                Ask about our coffee subscription service for regular deliveries
+                of fresh-roasted beans to your door.
               </p>
-              <Button className="bg-olive-600 hover:bg-olive-700 text-white">Shop Retail</Button>
+              <Button className="bg-olive-600 hover:bg-olive-700 text-white">
+                Shop Retail
+              </Button>
             </div>
           </div>
         </div>
       </section>
-
       {/* CTA */}
       <section className="py-16 bg-olive-700 dark:bg-olive-900 text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Experience Our Coffee Today</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            Experience Our Coffee Today
+          </h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Visit Grounded to enjoy a thoughtfully crafted cup of Michigan&apos;s finest coffee in our serene, welcoming
-            space.
+            Visit Grounded to enjoy a thoughtfully crafted cup of
+            Michigan&apos;s finest coffee in our serene, welcoming space.
           </p>
-          <Button asChild size="lg" className="bg-white text-olive-700 hover:bg-gray-100">
+          <Button
+            asChild
+            size="lg"
+            className="bg-white text-olive-700 hover:bg-gray-100"
+          >
             <a href="#menu">View Menu</a>
           </Button>
         </div>
       </section>
     </div>
-  )
+  );
 }
